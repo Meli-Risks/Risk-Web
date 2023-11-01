@@ -2,6 +2,10 @@ import {Button} from "primereact/button";
 import image from "../../../../assets/images/404.svg";
 import {useNavigate} from "react-router-dom";
 
+/**
+ * `NotFound` is a component that represents a "Page not found" error page. It is displayed when a user tries to
+ * access a resource that does not exist or is not available.
+ */
 export const NotFound = () => {
     const navigate = useNavigate();
 

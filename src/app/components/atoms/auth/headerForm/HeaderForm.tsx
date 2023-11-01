@@ -5,6 +5,14 @@ type Props = {
     message: string;
 }
 
+/**
+ * HeaderForm component for displaying a header in a form.
+ *
+ * @param props - The component's properties.
+ * @param props.title - The title to display in the header.
+ * @param props.message - The message to display in the header.
+ * @returns A header component for a form with a title, message, and an image.
+ */
 export const HeaderForm = (props: Props) => {
     return (
         <div className="text-center mb-5">

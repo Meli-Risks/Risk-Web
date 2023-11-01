@@ -1,8 +1,13 @@
 import {LazyTableState, ProviderParameters, RiskParameters} from "./pagination";
 
-
+/**
+ * Casts LazyTableState to RiskParameters for querying risk data.
+ *
+ * @param lazyTableState - The LazyTableState containing filter and pagination information.
+ * @returns RiskParameters with the extracted values from LazyTableState.
+ */
 export const castRiskParameters = (lazyTableState: LazyTableState): RiskParameters => {
-    const {page, rows, sortField, sortOrder, filters, globalFilter} = lazyTableState;
+    const { page, rows, sortField, sortOrder, filters, globalFilter } = lazyTableState;
     return {
         pageNumber: page === undefined ? undefined : page + 1,
         pageSize: rows === undefined ? undefined : rows,
@@ -24,12 +29,24 @@ export const castRiskParameters = (lazyTableState: LazyTableState): RiskParamete
     };
 }
 
+/**
+ * Extracts the order type ('asc' or 'desc') based on sortOrder.
+ *
+ * @param sortOrder - The sorting order value.
+ * @returns The order type ('asc', 'desc', or undefined).
+ */
 const getOrderType = (sortOrder: number | null | undefined): string | undefined => {
     return sortOrder === 1 ? 'asc' : sortOrder === undefined || sortOrder === 0 ? undefined : 'desc';
 }
 
+/**
+ * Casts LazyTableState to ProviderParameters for querying provider data.
+ *
+ * @param lazyTableState - The LazyTableState containing filter and pagination information.
+ * @returns ProviderParameters with the extracted values from LazyTableState.
+ */
 export const castProviderParameters = (lazyTableState: LazyTableState): ProviderParameters => {
-    const {page, rows, sortField, sortOrder, filters} = lazyTableState;
+    const { page, rows, sortField, sortOrder, filters } = lazyTableState;
     return {
         pageNumber: page === undefined ? undefined : page + 1,
         pageSize: rows === undefined ? undefined : rows,

@@ -13,17 +13,55 @@ import {Column} from "primereact/column";
 import {ProviderDialog} from "../../templates";
 import {DeleteProviderDialog} from "../../molecules/providers/deleteProviderDialog/DeleteProviderDialog";
 
+/**
+ * `ProviderAdmin` is a component for managing providers. It displays a list of providers in a table,
+ * allows filtering, sorting, creating, editing, and deleting providers.
+ */
 export const ProviderAdmin = () => {
+
+    /**
+     * `loading` is a state variable used to indicate whether data is being loaded or not.
+     */
     const [loading, setLoading] = useState<boolean>(false);
+
+    /**
+     * `totalRecords` represents the total number of records available in the data.
+     */
     const [totalRecords, setTotalRecords] = useState<number>(0);
+
+    /**
+     * `providers` is a state variable that holds an array of ProviderResponse objects, representing the providers to be displayed.
+     */
     const [providers, setProviders] = useState<ProviderResponse[]>([]);
+
+    /**
+     * `lazyState` is a state variable that holds the current state of the data table, including sorting, filtering, and pagination information.
+     */
     const [lazyState, setLazyState] = useState<LazyTableState>(INITIAL_PROVIDER_TABLE_STATE);
 
+    /**
+     * `toast` is a reference to the Toast component for displaying success and error messages.
+     */
     const toast = useRef(null);
+
+    /**
+     * `currentProvider` is a state variable representing the provider currently being viewed or edited.
+     */
     const [currentProvider, setCurrentProvider] = useState<ProviderResponse>(EMPTY_PROVIDER);
+
+    /**
+     * `providerDialog` is a state variable that determines whether the provider dialog for creating/editing providers is visible or not.
+     */
     const [providerDialog, setProviderDialog] = useState<boolean>(false);
+
+    /**
+     * `deleteProviderDialog` is a state variable that determines whether the delete provider dialog is visible or not.
+     */
     const [deleteProviderDialog, setDeleteProviderDialog] = useState<boolean>(false);
 
+    /**
+     * Function to load provider's data from the server
+     */
     const loadData = (): void => {
         setLoading(true);
         ProviderService.findPaginatedProviders(lazyState)
@@ -42,10 +80,18 @@ export const ProviderAdmin = () => {
             });
     };
 
+    /**
+     * Load data initially and whenever the table state changes
+     */
     useEffect((): void => {
         loadData();
     }, [lazyState]);
 
+    /**
+     * Handles page change in the data table.
+     *
+     * @param event - The DataTablePageEvent object containing page change information.
+     */
     const onPage = (event: DataTablePageEvent): void => {
         setLazyState((prevState: LazyTableState) => ({
             ...prevState,
@@ -55,6 +101,11 @@ export const ProviderAdmin = () => {
         }));
     };
 
+    /**
+     * Handles sorting change in the data table.
+     *
+     * @param event - The DataTableSortEvent object containing sorting information.
+     */
     const onSort = (event: DataTableSortEvent): void => {
         setLazyState((prevState: LazyTableState) => ({
             ...prevState,
@@ -63,6 +114,11 @@ export const ProviderAdmin = () => {
         }));
     };
 
+    /**
+     * Handles filter change in the data table.
+     *
+     * @param event - The DataTableFilterEvent object containing filter change information.
+     */
     const onFilter = (event: DataTableFilterEvent): void => {
         setLazyState((prevState: LazyTableState) => ({
             ...prevState,
@@ -74,16 +130,27 @@ export const ProviderAdmin = () => {
         }));
     };
 
+    /**
+     * Opens a new provider dialog for creating a new provider or editing an existing one.
+     */
     const openNew = (): void => {
         setCurrentProvider(EMPTY_PROVIDER);
         setProviderDialog(true);
     };
 
+    /**
+     * Hides the provider dialog and resets the state of the data table.
+     */
     const hideDialog = (): void => {
         setProviderDialog(false);
         setLazyState({...lazyState});
     };
 
+    /**
+     * Displays a success message in a toast notification.
+     *
+     * @param message - The success message to display.
+     */
     const showSuccessMessage = (message: string): void => {
         if (toast?.current) {
             // @ts-ignore
@@ -91,6 +158,11 @@ export const ProviderAdmin = () => {
         }
     };
 
+    /**
+     * Displays an error message in a toast notification.
+     *
+     * @param message - The error message to display.
+     */
     const showErrorMessage = (message: string): void => {
         if (toast?.current) {
             // @ts-ignore
@@ -98,22 +170,38 @@ export const ProviderAdmin = () => {
         }
     };
 
+    /**
+     * Initiates the deletion process for a provider by confirming the action.
+     *
+     * @param provider - The provider to be deleted.
+     */
     const confirmDeleteProvider = (provider: ProviderResponse): void => {
         setCurrentProvider({...provider});
         setDeleteProviderDialog(true);
     }
 
+    /**
+     * Initiates the editing process for a provider.
+     *
+     * @param provider - The provider to be edited.
+     */
     const editProvider = (provider: ProviderResponse): void => {
         setCurrentProvider({...provider});
         setProviderDialog(true);
     }
 
+    /**
+     * Hides the delete provider dialog and resets the data table state.
+     */
     const hideDeleteDialog = (): void => {
         setDeleteProviderDialog(false);
         setLazyState({...lazyState});
         setCurrentProvider(EMPTY_PROVIDER);
     };
 
+    /**
+     * Clears any applied filters on the data table and resets the table to its initial state.
+     */
     const clearFilter = (): void => {
         setLazyState(INITIAL_PROVIDER_TABLE_STATE);
     }
