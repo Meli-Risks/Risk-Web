@@ -10,6 +10,15 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * NameField is a React component that renders an input field for entering a name in a form.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Control<ProviderRequest>} props.control - Control object from react-hook-form for managing form inputs.
+ * @param {ErrorType} props.errors - Object containing validation errors for the form.
+ * @returns - The rendered React component.
+ */
 export const NameField = ({control, errors}: Props) => {
     return (
         <Controller

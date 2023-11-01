@@ -11,7 +11,20 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * ImpactField is a React component that renders an input field for selecting the impact in a form.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Control<RiskRequest>} props.control - Control object from react-hook-form for managing form inputs.
+ * @param {ErrorType} props.errors - Object containing validation errors for the form.
+ * @returns - The rendered React component.
+ */
 export const ImpactField = ({control, errors}: Props) => {
+
+    /**
+     * Generate options for the Dropdown component based on the Impact enum
+     */
     const options: string[] = Object.keys(Impact).filter(key => isNaN(Number(key)));
 
     return (

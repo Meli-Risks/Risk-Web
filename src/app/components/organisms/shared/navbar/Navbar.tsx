@@ -6,6 +6,15 @@ type Props = {
     changeSidebarVisibility: () => void;
 }
 
+/**
+ * Navbar is a React component that represents the top navigation bar of the application.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {string} props.username - The username to display in the navigation bar.
+ * @param {() => void} props.changeSidebarVisibility - A function to toggle the sidebar visibility.
+ * @returns - The rendered React component.
+ */
 export const Navbar = ({username, changeSidebarVisibility}: Props) => {
     return (
         <div

@@ -14,6 +14,12 @@ const LazyNotFound = lazy(() => import('../components/pages/shared/NotFound')
 const LazyLogin = lazy(() => import('../components/pages/auth/login/Login')
     .then(() => ({default: Login})));
 
+/**
+ * Component for defining main application routes, including admin, login, and not-found routes.
+ * It uses an `AuthGuard` to protect admin routes and sets an Axios interceptor for navigation to the login page on token expiration.
+ *
+ * @returns A JSX element representing the main application routes.
+ */
 export const MainRoute = () => {
     const navigate = useNavigate();
     setAxiosInterceptor(() => navigate('/login'));

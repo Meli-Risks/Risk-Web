@@ -1,5 +1,8 @@
 import {DataTableFilterMeta} from "primereact/datatable";
 
+/**
+ * Interface representing the state of a lazy-loaded table.
+ */
 export interface LazyTableState {
     first: number;
     rows: number;
@@ -10,6 +13,9 @@ export interface LazyTableState {
     globalFilter: string;
 }
 
+/**
+ * Constant representing the initial state for a risk table.
+ */
 export const INITIAL_RISK_TABLE_STATE: LazyTableState = {
     first: 1,
     rows: 10,
@@ -27,6 +33,9 @@ export const INITIAL_RISK_TABLE_STATE: LazyTableState = {
     globalFilter: '',
 }
 
+/**
+ * Constant representing the initial state for a provider table.
+ */
 export const INITIAL_PROVIDER_TABLE_STATE: LazyTableState = {
     first: 1,
     rows: 10,
@@ -40,6 +49,9 @@ export const INITIAL_PROVIDER_TABLE_STATE: LazyTableState = {
     globalFilter: '',
 }
 
+/**
+ * Interface representing parameters for querying risk data.
+ */
 export type RiskParameters = {
     pageNumber?: number;
     pageSize?: number;
@@ -54,6 +66,9 @@ export type RiskParameters = {
     globalFilter?: string;
 }
 
+/**
+ * Interface representing parameters for querying provider data.
+ */
 export type ProviderParameters = {
     pageNumber?: number;
     pageSize?: number;

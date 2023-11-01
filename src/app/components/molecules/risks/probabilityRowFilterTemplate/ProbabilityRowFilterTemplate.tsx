@@ -8,7 +8,19 @@ type Props = {
     options: ColumnFilterElementTemplateOptions;
 }
 
+/**
+ * ProbabilityRowFilterTemplate is a React component that provides a filter template for filtering data in a column.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {ColumnFilterElementTemplateOptions} props.options - Options for the column filter element template.
+ * @returns - The rendered React component.
+ */
 export const ProbabilityRowFilterTemplate = ({options}: Props) => {
+
+    /**
+     * Generate an array of probability names based on the Probability enum
+     */
     const probabilityNames: string[] = Object.keys(Probability).filter(key => isNaN(Number(key)));
 
     return (

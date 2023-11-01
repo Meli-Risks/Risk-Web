@@ -12,6 +12,16 @@ type Props = {
     countries: CountryResponse[]
 }
 
+/**
+ * CountriesField component for rendering a multi-select input field for selecting associated countries.
+ * This component provides a multi-select input field for selecting countries and displays validation errors if any.
+ *
+ * @param {Props} props - An object containing the properties for the countries field.
+ * @param {Control<ProviderRequest>} props.control - The control object from react-hook-form for managing form state.
+ * @param {ErrorType} props.errors - An object containing form errors.
+ * @param {CountryResponse[]} props.countries - An array of available countries for selection.
+ * @returns - A component that renders a multi-select input field for selecting associated countries with validation.
+ */
 export const CountriesField = ({control, errors, countries}: Props) => {
     const [selectedCountries, setSelectedCountries] = useState<CountryResponse[]>(control._formValues['countryCodes']);
     return (
