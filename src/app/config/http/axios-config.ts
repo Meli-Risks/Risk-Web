@@ -3,7 +3,7 @@ import {jwtDecode, JwtPayload} from "jwt-decode";
 import {AuthService} from "../../lib";
 
 export const api: AxiosInstance = axios.create({
-    baseURL: 'http://54.149.254.232:8090/api/v1',
+    baseURL: 'https://smart-risk.tech/api/v1',
 });
 
 export const setAxiosInterceptor = (navigate: () => void): void => {
