@@ -1,0 +1,13 @@
+.img-profile {
+    width: 28px;
+    height: 28px;
+}
+
+.badge-contracts {
+    min-width: 1.5rem;
+    height: 1.5rem;
+}
+
+.no-decoration {
+    text-decoration: none;
+}

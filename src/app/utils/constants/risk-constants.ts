@@ -1,0 +1,20 @@
+import {ProviderRiskResponse, RiskResponse, CountryResponse} from "../../lib";
+
+const EMPTY_COUNTRY = new CountryResponse('', '', '');
+const EMPTY_PROVIDER = new ProviderRiskResponse(0, '');
+export const EMPTY_RISK = new RiskResponse(0, '', '', 0, 0, EMPTY_PROVIDER, EMPTY_COUNTRY);
+export const TITLE_RISK_ADMIN = 'Gestionar riesgos';
+export const TITLE_REQUIRED = 'El título es requerido';
+export const MIN_LENGTH_TITLE_VALIDATION = 'El título debe tener al menos 3 caracteres';
+export const MAX_LENGTH_TITLE_VALIDATION = 'El título no puede tener más de 100 caracteres';
+export const DESCRIPTION_REQUIRED = 'La descripción es requerida';
+export const MIN_LENGTH_DESCRIPTION_VALIDATION = 'La descripción debe tener al menos 10 caracteres';
+export const MAX_LENGTH_DESCRIPTION_VALIDATION = 'La descripción no puede tener más de 500 caracteres';
+export const PROBABILITY_REQUIRED = 'La probabilidad es requerida';
+export const IMPACT_REQUIRED = 'El impacto es requerido';
+export const PROVIDER_REQUIRED = 'El proveedor es requerido';
+export const COUNTRY_REQUIRED = 'El país es requerido';
+export const LOADING_PROVIDERS = 'Cargando proveedores...';
+export const RISK_CREATED_SUCCESSFULLY = 'Riesgo creado con éxito';
+export const RISK_UPDATED_SUCCESSFULLY = 'Riesgo creado con éxito';
+export const RISK_DELETED_SUCCESSFULLY = 'Riesgo creado con éxito';
