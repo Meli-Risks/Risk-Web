@@ -8,6 +8,18 @@ export type Item = {
     action: () => void;
 }
 
+/**
+ * SidebarItem component for rendering an item in the sidebar.
+ * This component displays a sidebar item, which can either be a navigation link or an action item, depending on the `isAction` prop.
+ *
+ * @param {Item} props - An object containing the properties of the sidebar item.
+ * @param {boolean} props.isAction - A boolean flag indicating whether the item is an action item (true) or a navigation link (false).
+ * @param {string} props.name - The name or label of the sidebar item.
+ * @param {string} props.iconClass - The CSS class for the icon associated with the sidebar item.
+ * @param {string} props.route - The route to navigate to if the item is not an action item.
+ * @param {Function} props.action - The action to perform when the item is clicked if it is an action item.
+ * @returns A component that renders a sidebar item as either a navigation link or an action item.
+ */
 export const SidebarItem = (props: Item) => {
     return (
         <>

@@ -14,11 +14,30 @@ type Props = {
     onSelectProvider: (providerId: number) => void;
 }
 
+/**
+ * ProviderField is a React component that renders an input field for selecting a provider in a form.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Control<RiskRequest>} props.control - Control object from react-hook-form for managing form inputs.
+ * @param {ErrorType} props.errors - Object containing validation errors for the form.
+ * @param {ProviderResponse[]} props.providers - An array of available provider options.
+ * @param {Function} props.onSelectProvider - A function to handle provider selection.
+ * @returns - The rendered React component.
+ */
 export const ProviderField = ({providers, onSelectProvider, control, errors}: Props) => {
+
+    /**
+     * Convert the provider data into SelectItem options.
+     */
     const options: SelectItem[] = providers.map((provider: ProviderResponse): SelectItem => {
         return {label: provider.name, value: provider.id};
     })
 
+    /**
+     * Function to handle the change in provider selection.
+     * @param providerId  id of the selected provider.
+     */
     const onChangeValue = (providerId: number): number => {
         onSelectProvider(providerId);
         return providerId;

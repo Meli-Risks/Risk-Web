@@ -14,6 +14,15 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * DescriptionField is a controlled input field for capturing risk descriptions.
+ * It integrates with the react-hook-form library and enforces validation rules for required, minimum, and maximum length.
+ *
+ * @param {Props} props - The properties and callback functions for the component.
+ * @param {Control<RiskRequest>} props.control - The control object provided by react-hook-form for managing form state.
+ * @param {ErrorType} props.errors - An object containing validation errors for the form fields.
+ * @returns - A controlled input field for capturing risk descriptions.
+ */
 export const DescriptionField = ({control, errors}: Props) => {
     return (
         <Controller

@@ -7,6 +7,13 @@ type Props = {
     risk: RiskResponse;
 }
 
+/**
+ * ImpactBodyTemplate component for displaying the impact of a risk as a badge.
+ *
+ * @param props - The component's properties.
+ * @param props.risk - The risk data containing impact information.
+ * @returns A component that displays the impact of a risk as a badge with severity.
+ */
 export const ImpactBodyTemplate = ({risk}: Props) => {
   return (
       <div className="flex align-items-center gap-2">

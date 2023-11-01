@@ -10,6 +10,15 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * TitleField is a React component that renders an input field for entering a title in a form.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Control<RiskRequest>} props.control - Control object from react-hook-form for managing form inputs.
+ * @param {ErrorType} props.errors - Object containing validation errors for the form.
+ * @returns - The rendered React component.
+ */
 export const TitleField = ({control, errors}: Props) => {
     return (
         <Controller

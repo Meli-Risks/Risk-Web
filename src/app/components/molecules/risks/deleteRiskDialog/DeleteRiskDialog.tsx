@@ -12,9 +12,29 @@ type Props = {
     currentRisk: RiskResponse;
 }
 
-export const DeleteRiskDialog = ({hideDialog, visibility, currentRisk, showErrorMessage, showSuccessMessage}: Props) => {
+/**
+ * Component for displaying a confirmation dialog for deleting a risk.
+ *
+ * @param {Props} props - The properties and callback functions for the component.
+ * @param {boolean} props.visibility - Determines whether the dialog is visible.
+ * @param {function} props.hideDialog - Callback function to hide the dialog.
+ * @param {function} props.showSuccessMessage - Callback function to show a success message.
+ * @param {function} props.showErrorMessage - Callback function to show an error message.
+ * @param {RiskResponse} props.currentRisk - The risk to be deleted.
+ * @returns - The component representing the delete risk confirmation dialog.
+ */
+export const DeleteRiskDialog = ({
+                                     hideDialog,
+                                     visibility,
+                                     currentRisk,
+                                     showErrorMessage,
+                                     showSuccessMessage
+                                 }: Props) => {
     const [loading, setLoading] = useState<boolean>(false);
 
+    /**
+     * Deletes a risk using RiskService and handles success and error cases, while managing the loading state.
+     */
     const deleteRisk = (): void => {
         setLoading(true);
         RiskService.delete(currentRisk.id)
