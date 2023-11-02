@@ -2,6 +2,10 @@ import './Login.css';
 import {HeaderForm} from "../../../atoms";
 import {LoginForm} from "../../../organisms";
 
+/**
+ * `Login` is a component representing the login page of the application. It provides a user interface for users to
+ * sign in to the application.
+ */
 export const Login = () => {
     return (
         <div

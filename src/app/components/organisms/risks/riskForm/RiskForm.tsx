@@ -17,11 +17,35 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * RiskForm is a React component that represents a form for creating or editing risk information.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Control<RiskRequest>} props.control - Control object from react-hook-form for managing form inputs.
+ * @param {ErrorType} props.errors - Object containing validation errors for the form.
+ * @returns - The rendered React component.
+ */
 export const RiskForm = ({control, errors}: Props) => {
+
+    /**
+     * State to manage loading state
+     */
     const [loading, setLoading] = useState<boolean>(false);
+
+    /**
+     * State to store the list of providers
+     */
     const [providers, setProviders] = useState<ProviderResponse[]>([]);
+
+    /**
+     * State to store the list of countries
+     */
     const [countries, setCountries] = useState<CountryResponse[]>([]);
 
+    /**
+     * Function to load the list of providers
+     */
     const loadProviders = (): void => {
         setLoading(true);
         ProviderService.findAll()
@@ -35,16 +59,30 @@ export const RiskForm = ({control, errors}: Props) => {
             });
     };
 
+    /**
+     * Load providers on component mount
+     */
     useEffect((): void => {
         loadProviders();
     }, []);
 
+    /**
+     * Function to set countries based on the selected provider.
+     *
+     * @param {number} providerId - The ID of the selected provider.
+     * @param {ProviderResponse[]} providersResponse - The list of provider responses to search for the selected provider.
+     */
     const setCountriesByProvider = (providerId: number, providersResponse: ProviderResponse[]): void => {
         let providerFound: ProviderResponse | undefined = providersResponse.find((provider: ProviderResponse): boolean => provider.id === providerId);
         if (providerFound === undefined) return;
         setCountries(providerFound.countries);
     }
 
+    /**
+     * Function to handle the selection of a provider and update the list of countries accordingly.
+     *
+     * @param {number} providerId - The ID of the selected provider.
+     */
     const onSelectedProvider = (providerId: number): void => {
         let providerFound: ProviderResponse | undefined = providers.find((provider: ProviderResponse): boolean => provider.id === providerId);
         if (providerFound === undefined) return;

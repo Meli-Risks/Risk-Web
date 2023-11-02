@@ -9,6 +9,15 @@ type Props = {
     errors: ErrorType;
 }
 
+/**
+ * UsernameField component for rendering a username input field with validation.
+ * This component provides an input field for the username and displays validation errors if any.
+ *
+ * @param {Props} props - An object containing the properties for the username field.
+ * @param {Control} props.control - The control object from react-hook-form for managing form state.
+ * @param {ErrorType} props.errors - An object containing form errors.
+ * @returns - A component that renders a username input field with validation.
+ */
 export const UsernameField = ({control, errors}: Props) => {
     return (
         <Controller

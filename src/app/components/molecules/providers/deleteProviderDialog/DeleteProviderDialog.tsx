@@ -12,9 +12,30 @@ type Props = {
     currentProvider: ProviderResponse;
 }
 
-export const DeleteProviderDialog = ({hideDialog, visibility, currentProvider, showErrorMessage, showSuccessMessage}: Props) => {
+/**
+ * DeleteProviderDialog component for rendering a dialog for confirming the deletion of a provider.
+ * This component provides a dialog for confirming the deletion of a provider and displays success or error messages.
+ *
+ * @param {Props} props - An object containing the properties for the delete provider dialog.
+ * @param {boolean} props.visibility - A boolean representing the visibility of the dialog.
+ * @param {() => void} props.hideDialog - A function to hide the dialog.
+ * @param {(message: string) => void} props.showSuccessMessage - A function to show a success message.
+ * @param {(message: string) => void} props.showErrorMessage - A function to show an error message.
+ * @param {ProviderResponse} props.currentProvider - The current provider to be deleted.
+ * @returns - A component that renders a dialog for confirming provider deletion with success and error message handling.
+ */
+export const DeleteProviderDialog = ({
+                                         hideDialog,
+                                         visibility,
+                                         currentProvider,
+                                         showErrorMessage,
+                                         showSuccessMessage
+                                     }: Props) => {
     const [loading, setLoading] = useState<boolean>(false);
 
+    /**
+     * Deletes the current provider, shows success or error messages, and handles the loading state.
+     */
     const deleteProvider = (): void => {
         setLoading(true);
         ProviderService.delete(currentProvider.id)

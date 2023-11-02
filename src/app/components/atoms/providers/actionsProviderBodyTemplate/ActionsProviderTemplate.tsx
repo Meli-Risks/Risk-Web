@@ -8,6 +8,15 @@ type Props = {
     confirmDeleteProvider: (rowData: ProviderResponse) => void;
 }
 
+/**
+ * ActionsProviderTemplate component for displaying actions (edit and delete) for a provider in a table.
+ *
+ * @param props - The component's properties.
+ * @param props.rowData - The data of the provider for which actions are displayed.
+ * @param props.editProvider - A callback function to edit the provider.
+ * @param props.confirmDeleteProvider - A callback function to confirm and delete the provider.
+ * @returns A component displaying edit and delete actions for a provider in a table.
+ */
 export const ActionsProviderTemplate = ({editProvider, confirmDeleteProvider, rowData}: Props) => {
     return (
         <>

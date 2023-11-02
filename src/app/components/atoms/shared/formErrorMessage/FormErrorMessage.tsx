@@ -8,6 +8,15 @@ type Props = {
     name: string;
     errorsForm: ErrorType;
 }
+
+/**
+ * FormErrorMessage component for rendering error messages in a form.
+ *
+ * @param props - The component's properties.
+ * @param props.name - The name of the form field to display the error message for.
+ * @param props.errorsForm - The errors object from react-hook-form.
+ * @returns A component that displays an error message for a specified form field.
+ */
 export const FormErrorMessage = ({name, errorsForm}: Props) => {
     return (
         <>

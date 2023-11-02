@@ -7,16 +7,40 @@ import {Toast} from "primereact/toast";
 import {UNEXPECTED_ERROR} from "../../../../utils/constants";
 import {PasswordField, UsernameField} from "../../../molecules";
 
+/**
+ * LoginForm is a React component that provides a login form for user authentication.
+ *
+ * @component
+ * @returns - The rendered React component.
+ */
 export const LoginForm = () => {
+
+    /**
+     * Ref for the toast message component.
+     */
     const toast = useRef(null);
+
+    /**
+     * Navigation hook for redirection after successful login.
+     */
     const navigate = useNavigate();
+
+    /**
+     * State variable to manage loading state
+     */
     const [loading, setLoading] = useState(false);
 
+    /**
+     * Default values for the username and password fields.
+     */
     const defaultValues = {
         username: '',
         password: ''
     };
 
+    /**
+     * Form control and validation using react-hook-form.
+     */
     const {
         control,
         formState: {errors},
@@ -24,6 +48,11 @@ export const LoginForm = () => {
         reset
     } = useForm({defaultValues});
 
+    /**
+     * Function to handle form submission.
+     *
+     * @param data authentication request.
+     */
     const onSubmit = (data: AuthRequest): void => {
         setLoading(true);
         AuthService.login(data)
@@ -45,6 +74,11 @@ export const LoginForm = () => {
             });
     };
 
+    /**
+     * Function to display a toast message with an error.
+     *
+     * @param message message to display.
+     */
     const show = (message: string): void => {
         if (toast?.current) {
             // @ts-ignore

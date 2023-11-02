@@ -18,9 +18,30 @@ type Props = {
     currentProvider: ProviderResponse;
 }
 
+/**
+ * `ProviderDialog` is a component used for creating or updating a provider. It displays a dialog box with a form for
+ * entering provider details, including name and associated countries.
+ *
+ * @param {Props} props - The component's props.
+ * @param {boolean} props.visible - Determines whether the dialog is visible.
+ * @param {function} props.hideDialog - Function to hide the dialog.
+ * @param {function} props.showSuccessMessage - Function to show a success message.
+ * @param {function} props.showErrorMessage - Function to show an error message.
+ * @param {ProviderResponse} props.currentProvider - The current provider being edited (if in edit mode).
+ * @returns - The rendered React component.
+ */
 export const ProviderDialog = ({visible, hideDialog, showSuccessMessage, showErrorMessage, currentProvider}: Props) => {
+
+    /**
+     * State variable to manage loading state
+     */
     const [loading, setLoading] = useState<boolean>(false);
 
+    /**
+     * Transforms a `ProviderResponse` into a `ProviderRequest` by extracting the name and associated country codes.
+     * @param {ProviderResponse} response - The provider response to transform.
+     * @returns {ProviderRequest} - The provider request.
+     */
     const getProviderRequest = (response: ProviderResponse): ProviderRequest => {
         return {
             name: response.name,
@@ -28,6 +49,9 @@ export const ProviderDialog = ({visible, hideDialog, showSuccessMessage, showErr
         }
     }
 
+    /**
+     * Form control and validation using react-hook-form.
+     */
     const {
         control,
         formState: {errors},
@@ -36,8 +60,14 @@ export const ProviderDialog = ({visible, hideDialog, showSuccessMessage, showErr
         reset
     } = useForm<ProviderRequest>();
 
+    /**
+     * Reset the form with the current provider's data when it changes
+     */
     useEffect(() => reset(getProviderRequest(currentProvider)), [currentProvider]);
 
+    /**
+     * Saves the provider by either creating a new one or updating the existing one based on the current provider's ID.
+     */
     const saveProvider = (): void => {
         setLoading(true);
         if (currentProvider.id) {
@@ -47,6 +77,9 @@ export const ProviderDialog = ({visible, hideDialog, showSuccessMessage, showErr
         }
     }
 
+    /**
+     * Creates a new provider with the data from the form.
+     */
     const createProvider = (): void => {
         ProviderService.create(getValues())
             .then(response => {
@@ -68,6 +101,9 @@ export const ProviderDialog = ({visible, hideDialog, showSuccessMessage, showErr
             });
     }
 
+    /**
+     * Updates the existing provider with the data from the form.
+     */
     const updateRisk = (): void => {
         ProviderService.update(getValues(), currentProvider.id)
             .then(response => {

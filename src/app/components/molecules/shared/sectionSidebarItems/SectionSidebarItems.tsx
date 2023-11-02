@@ -5,6 +5,15 @@ export type SectionItems = {
     name: string
 }
 
+/**
+ * SectionSidebarItems is a React component that displays a list of items within a section in a sidebar.
+ *
+ * @component
+ * @param {Object} props - The component's props.
+ * @param {Item[]} props.items - An array of items to be displayed in the section sidebar.
+ * @param {string} props.name - The name or title of the section.
+ * @returns - The rendered React component.
+ */
 export const SectionSidebarItems = ({items, name}: SectionItems) => {
     return (
         <li>
